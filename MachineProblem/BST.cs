@@ -77,6 +77,8 @@ namespace BST2
         {
             if (root == null)
                 return root;
+            else if (root.key.Equals(key)) //equals
+                root = null;
             else if (key.CompareTo(root.key) == -1) //less than
                 root.left = Delete(root.left, key);
             else if (key.CompareTo(root.key) == 1)  //greater than
@@ -143,7 +145,10 @@ namespace BST2
 
         public void Delete(TKey key)
         {
-            Delete(root, key);
+            if (root.key.Equals(key))
+                root = null;
+            else
+                Delete(root, key);
         }
 
         public Node<TKey, TValue> Search(TKey key)

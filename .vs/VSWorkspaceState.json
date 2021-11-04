@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MachineProblem"
   ],
-  "SelectedNode": "\\MachineProblem.sln",
+  "SelectedNode": "\\MachineProblem\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
