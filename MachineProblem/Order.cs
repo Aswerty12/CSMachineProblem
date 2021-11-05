@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace MachineProblem
 {
-    //test
     class Order
     {
         //Class attributes
@@ -23,7 +22,7 @@ namespace MachineProblem
             {
                 Console.WriteLine("Add order content: ");
                 content = Console.ReadLine();
-                if (menuList.ContainsKey(content))
+                if (menuList.ContainsKey(content.ToUpper()))
                 {
                     currentOrder.Add(content);
                     break;
@@ -45,8 +44,15 @@ namespace MachineProblem
             {
                 Console.WriteLine("Number of content to be deleted: ");
                 bool boolean = int.TryParse(Console.ReadLine(), out contentIndex);
-                subtractPrice(currentOrder.ElementAt(contentIndex), menuList);
-                currentOrder.RemoveAt(contentIndex);
+                subtractPrice(currentOrder.ElementAt(contentIndex-1), menuList);
+                if (currentOrder.Count > 1)
+                {
+                    currentOrder.RemoveAt(contentIndex-1);
+                }
+                else
+                {
+                    currentOrder.Clear();
+                }
             }
             catch (System.ArgumentOutOfRangeException)
             {
@@ -58,13 +64,13 @@ namespace MachineProblem
 
         public void addPrice(string content, Dictionary<string, decimal> menuList)
         {
-            decimal itemPrice = menuList[content];
+            decimal itemPrice = menuList[content.ToUpper()];
             orderPrice += itemPrice;
         }
 
         public void subtractPrice(string content, Dictionary<string, decimal> menuList)
         {
-            decimal itemPrice = menuList[content];
+            decimal itemPrice = menuList[content.ToUpper()];
             orderPrice -= itemPrice;
         }
     }

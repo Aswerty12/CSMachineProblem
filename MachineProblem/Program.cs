@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BST2;
+using System.Threading;
 namespace MachineProblem
 {
     //Kepp it object oriented, use functions and remember to comment anything that you yourself have trouble explaining.
@@ -11,17 +12,11 @@ namespace MachineProblem
         {
             TextFileIO textFile = new TextFileIO();
 
-            //Create BST and Quuue class here
+            //Create BST and Queue class here
             var tree = new BinarySearchTree<int, string>();
             Queue<int> orderQueue = new Queue<int>();
             Dictionary<string, decimal> menuList = textFile.LoadMenu();
-            //Dictionary<string, decimal> menuList = new Dictionary<string, decimal>()
-            //{
-            //    {"Coke", 12}, {"Bepis", 15}, {"Tapsi", 45}, {"Spag", 55}
-            //};
 
-            //Load BST and queue from text file
-           
             foreach (string item in textFile.LoadBST())
             {
                 string[] temp = item.Split('=');
@@ -33,17 +28,21 @@ namespace MachineProblem
 
             while (true)
             {
-                Console.WriteLine("Welcome to RESTAURANT's Delivery Service.");
-                Console.WriteLine("Are you\n1)Ordering\n2)Delivering");
-                Console.WriteLine("X)Exit");
+                Console.WriteLine("Welcome to Food Capital's Delivering Service!");
+                Console.Write("Are you:\n1) Ordering\n2) Delivering\nX) Exit\nChoice: ");
                 string input = Console.ReadLine().ToUpper();
+                Console.Clear();
                 switch (input)
                 {
                     case "1":
+                        Console.WriteLine("You chose to order!\n");
+                        Thread.Sleep(500);
                         Order(tree, orderQueue, menuList);
                         continue;
                     case "2":
-                        Deliver(tree,orderQueue, menuList);
+                        Console.WriteLine("You chose to deliver!\n");
+                        Thread.Sleep(500);
+                        Deliver(tree, orderQueue, menuList);
                         continue;
                     case "X":
                         break;
@@ -65,143 +64,86 @@ namespace MachineProblem
             List<string> currentOrder = new List<string>();
             new_order.orderNumber = rnd.Next();
 
-            //Checks tree if orderNumber already exists
-            //if tree empty
-            if (tree.root == null)
+
+            bool while_bool = true;
+            while (while_bool)
             {
-                //Search throws exception unless there is root
-                Console.WriteLine("root is null");
-                bool while_bool = true;
-                while (while_bool)
+                // Checks if order number already exists
+                var isFound = tree.Search(new_order.orderNumber);
+                if (isFound != null)
                 {
-                    //displays currentOrder and orderNumber
-                    Console.WriteLine("Order Number: {0}" +
-                    " | Order Content: {1} | Current Price: {2}", new_order.orderNumber, string.Join(",", currentOrder), new_order.orderPrice);
-
-                    //choices
-                    Console.WriteLine("Press '1' to add to order | \nPress '2' to delete from your order | \nPress '3' to return to main menu | \nPress '4' to send order |\n");
-                    string choice = Console.ReadLine();
-                    switch (choice)
-                    {
-                        case "1":
-                            //addContent method from Order class
-                            currentOrder = new_order.addContent(currentOrder, menuList);
-                            while_bool = true;
-                            break;
-
-                        case "2":
-                            //deleteContent method from Order class
-                            currentOrder = new_order.deleteContent(currentOrder, menuList);
-                            while_bool = true;
-                            break;
-
-                        case "3":
-                            //returns to main
-                            return;
-
-                        case "4":
-                            //continues Order method
-                            while_bool = false;
-                            break;
-
-                        default:
-                            break;
-                    }
+                    Console.WriteLine("{0} already exists. This order contains {1}", isFound.key, isFound.value);
+                    new_order.orderNumber = rnd.Next();
+                    while_bool = true;
                 }
 
-                //Converts string list currentOrder to single string then inserts and enqueues
-                new_order.orderContent = string.Join(",", currentOrder);
-                tree.Insert(new_order.orderNumber, new_order.orderContent);
-                orderQueue.Enqueue(new_order.orderNumber);
-                Console.WriteLine("Order Received! Your total is P{0}", new_order.orderPrice);
-            }
+                //displays currentOrder and orderNumber
+                Console.WriteLine("Order Number: {0}" +
+                " | Order Content: {1} | Current Price: {2}", new_order.orderNumber, string.Join(", ", currentOrder), new_order.orderPrice);
 
-            //if tree has nodes
-            else
-            {
-                //Loops until orderNumber is not in bst
-                bool while_bool = true;
-                while (while_bool)
+                //choices
+                Console.Write("Press '1' to add to order | \nPress '2' to delete from your order | \nPress '3' to return to main menu | \nPress '4' to send order |\nChoice: ");
+                string choice = Console.ReadLine();
+                switch (choice)
                 {
-                    //orderNumber is in bst
-                    //search function from bst class
-                    var isFound = tree.Search(new_order.orderNumber);
-                    if (isFound != null)
-                    {
-                        Console.WriteLine("{0} is found. It has a value of {1}", isFound.key, isFound.value);
-                        new_order.orderNumber = rnd.Next();
+                    case "1":
+                        //addContent method from Order class
+                        currentOrder = new_order.addContent(currentOrder, menuList);
                         while_bool = true;
-                    }
+                        break;
 
-                    //orderNumber is not in bst
-                    else
-                    {
-                        bool while_bool2 = true;
-                        while (while_bool2)
+                    case "2":
+                        //deleteContent method from Order class
+                        currentOrder = new_order.deleteContent(currentOrder, menuList);
+                        while_bool = true;
+                        break;
+
+                    case "3":
+                        //returns to main
+                        return;
+
+                    case "4":
+                        //finishes Order method
+                        if (new_order.orderPrice > 0)
                         {
-                            //displays currentOrder and orderNumber
-                            Console.WriteLine("Order Number: {0}" +
-                            " | Order Content: {1} | Current Price: {2}", new_order.orderNumber, string.Join(",", currentOrder), new_order.orderPrice);
-
-                            //choices
-                            Console.WriteLine("Press '1' to add to order | \nPress '2' to delete from your order |\nPress '3' to return to main menu |\nPress '4' to send order |\n");
-                            string choice = Console.ReadLine();
-                            switch (choice)
-                            {
-                                case "1":
-                                    //addContent method from Order class
-                                    currentOrder = new_order.addContent(currentOrder, menuList);
-                                    while_bool2 = true;
-                                    break;
-
-                                case "2":
-                                    //deleteContent method from Order class
-                                    currentOrder = new_order.deleteContent(currentOrder, menuList);
-                                    while_bool2 = true;
-                                    break;
-
-                                case "3":
-                                    //returns to main
-                                    return;
-
-                                case "4":
-                                    //continues Order method
-                                    while_bool2 = false;
-                                    break;
-
-                                default:
-                                    break;
-                            }
+                            new_order.orderContent = string.Join(",", currentOrder);
+                            tree.Insert(new_order.orderNumber, new_order.orderContent);
+                            orderQueue.Enqueue(new_order.orderNumber);  //Converts string list currentOrder to single string then inserts and enqueues
+                            Console.WriteLine("\nOrder received! Your total is P{0}.", new_order.orderPrice);
+                            Console.ReadKey();
+                            while_bool = false;
                         }
+                        else
+                        {
+                            Console.WriteLine("\nOrder cannot be empty! Add items to your order first.", new_order.orderPrice);
+                            Console.ReadKey();
+                            while_bool = true;
+                        }
+                        break;
 
-                        //Converts string list currentOrder to single string then inserts and enqueues
-                        new_order.orderContent = string.Join(",", currentOrder);
-                        tree.Insert(new_order.orderNumber, new_order.orderContent);
-                        orderQueue.Enqueue(new_order.orderNumber);
-                        Console.WriteLine("Order Received! Your total is P{0}", new_order.orderPrice);
-                        while_bool = false;
-
-                    }
+                    default:
+                        break;
                 }
+                Console.Clear();
             }
 
-            //Save order in text file
+            
+            
+
             TextFileIO textFile = new TextFileIO();
             textFile.NewOrder(new_order.orderNumber, new_order.orderContent);
-
         }
 
         //Menu to deliver and access delivery related functions
-        static void Deliver(BinarySearchTree<int,string> tree, Queue<int> orderQueue, Dictionary<string, decimal> menuList)
+        static void Deliver(BinarySearchTree<int, string> tree, Queue<int> orderQueue, Dictionary<string, decimal> menuList)
         {
             Deliver obj = new Deliver();
-            Console.WriteLine("Deliver");
 
             bool boolean = true;
             while (boolean)
             {
-                Console.WriteLine("\nPress '1' to Deliver Current order |\nPress '2' to browse orders |\nPress '3' to View next order |\nPress '4' to delay current order" +
-                    "|\nPress '5' to return to main menu |\n");
+                Console.Write("Press '1' to deliver current order |\nPress '2' to browse orders |\nPress '3' to view next order |\nPress '4' to delay current order" +
+                    "|\nPress '5' to return to main menu |\nChoice: ");
                 string choice = Console.ReadLine();
                 switch (choice)
                 {
@@ -212,6 +154,7 @@ namespace MachineProblem
 
                     case "2":
                         //Option that DISPLAYS ORDERS, that traverses INORDER
+                        Console.WriteLine("\nDisplaying orders...");
                         tree.InOrder();
                         break;
 
@@ -234,9 +177,9 @@ namespace MachineProblem
                         Console.WriteLine("Invalid option");
                         break;
                 }
+                Console.ReadKey();
+                Console.Clear();
             }
         }
     }
-
-
 }

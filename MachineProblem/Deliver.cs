@@ -12,7 +12,7 @@ namespace MachineProblem
         public void deliverCurrentOrder(BinarySearchTree<int, string> tree, Queue<int> orderQueue, Dictionary<string, decimal> menuList)
         {
             //Option that DELIVERS, thus deleting whatever was next in queue and the associated BST entry
-            Console.WriteLine("Current order");
+            Console.WriteLine("\nCurrent order:");
             try
             {
                 int getOrderNumber = orderQueue.Dequeue(); //Get first order number in queue
@@ -35,14 +35,14 @@ namespace MachineProblem
             }
             catch (InvalidOperationException) //if the queue is empty
             {
-                Console.WriteLine("Empty orders");
+                Console.WriteLine("No orders placed yet.");
             }
         }
 
         public void displayCurrentOrder(BinarySearchTree<int, string> tree, Queue<int> orderQueue, Dictionary<string, decimal> menuList)
         {
             //Option that Displays next order (PEEKS at Queue but then searches and displays the associated BST entry
-            Console.WriteLine("Next order");
+            Console.WriteLine("\nNext order:");
             try
             {
                 int peekOrderNumber = orderQueue.Peek(); //Get first order number in queue without removing it from queue
@@ -59,7 +59,7 @@ namespace MachineProblem
             }
             catch (InvalidOperationException) //if the queue is empty
             {
-                Console.WriteLine("There's no more orders");
+                Console.WriteLine("No orders placed yet.");
             }
         }
 
@@ -78,7 +78,7 @@ namespace MachineProblem
             }
             catch (System.InvalidOperationException)
             {
-                Console.WriteLine("There's no more orders");
+                Console.WriteLine("No orders placed yet.");
             }
         }
     }

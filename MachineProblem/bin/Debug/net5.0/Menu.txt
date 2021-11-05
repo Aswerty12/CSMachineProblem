@@ -1,0 +1,9 @@
+Coke,15
+Pepsi,17
+Pasta,50
+Tapsilog,55
+Crispy Pata,80
+Family Bundle,250
+Fried Chicken,75
+Mountain Dew,19
+Secret Menu,9999

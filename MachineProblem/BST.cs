@@ -153,17 +153,21 @@ namespace BST2
 
         public Node<TKey, TValue> Search(TKey key)
         {
-            if (root.key.Equals(key))
+            if (root == null)
                 return root;
-
+            else if (root.key.Equals(key))
+                return root;
             else
             {
                 return Search(root, key);
             }
+            
         }
 
         public void InOrder()
         {
+            if (root == null)
+                Console.WriteLine("No content found.");
             InOrder(root);
         }
 
