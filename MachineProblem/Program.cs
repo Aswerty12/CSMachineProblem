@@ -9,13 +9,27 @@ namespace MachineProblem
         // Standard Main Loop that lets User select Customer (Ordering) or Employee (Delivering)
         static void Main(string[] args)
         {
+            TextFileIO textFile = new TextFileIO();
+
             //Create BST and Quuue class here
             var tree = new BinarySearchTree<int, string>();
             Queue<int> orderQueue = new Queue<int>();
-            Dictionary<string, decimal> menuList = new Dictionary<string, decimal>()
+            Dictionary<string, decimal> menuList = textFile.LoadMenu();
+            //Dictionary<string, decimal> menuList = new Dictionary<string, decimal>()
+            //{
+            //    {"Coke", 12}, {"Bepis", 15}, {"Tapsi", 45}, {"Spag", 55}
+            //};
+
+            //Load BST and queue from text file
+           
+            foreach (string item in textFile.LoadBST())
             {
-                {"Coke", 12}, {"Bepis", 15}, {"Tapsi", 45}, {"Spag", 55}
-            };
+                string[] temp = item.Split('=');
+                tree.Insert(int.Parse(temp[0]), temp[1]);
+                orderQueue.Enqueue(int.Parse(temp[0]));
+            }
+
+
 
             while (true)
             {
@@ -166,9 +180,15 @@ namespace MachineProblem
                         orderQueue.Enqueue(new_order.orderNumber);
                         Console.WriteLine("Order Received! Your total is P{0}", new_order.orderPrice);
                         while_bool = false;
+
                     }
                 }
             }
+
+            //Save order in text file
+            TextFileIO textFile = new TextFileIO();
+            textFile.NewOrder(new_order.orderNumber, new_order.orderContent);
+
         }
 
         //Menu to deliver and access delivery related functions
@@ -180,7 +200,7 @@ namespace MachineProblem
             bool boolean = true;
             while (boolean)
             {
-                Console.WriteLine("\nPress '1' to Deliver Current order |\nPress '2' to browse orders |\nPress '3' to view current order |\nPress '4' to delay current order" +
+                Console.WriteLine("\nPress '1' to Deliver Current order |\nPress '2' to browse orders |\nPress '3' to View next order |\nPress '4' to delay current order" +
                     "|\nPress '5' to return to main menu |\n");
                 string choice = Console.ReadLine();
                 switch (choice)
