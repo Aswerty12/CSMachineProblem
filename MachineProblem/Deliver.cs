@@ -17,6 +17,10 @@ namespace MachineProblem
             {
                 int getOrderNumber = orderQueue.Dequeue(); //Get first order number in queue
 
+                //Delete order in text file once the deliver is done
+                TextFileIO textFile = new TextFileIO();
+                textFile.DeleteOrder(getOrderNumber);
+
                 Console.WriteLine("Order number: {0}\n", tree.Search(getOrderNumber).key); //Get the order number
                 Console.WriteLine("Orders: {0}\n", tree.Search(getOrderNumber).value); //Get the orders
                 string[] splitOrders = tree.Search(getOrderNumber).value.Split(",");
@@ -64,6 +68,11 @@ namespace MachineProblem
             try
             {
                 int getOrderNumber = orderQueue.Dequeue(); //Get first order number in queue
+
+                //textfile to delay
+                TextFileIO textFile = new TextFileIO();
+                textFile.DelayOrder(getOrderNumber);
+
                 orderQueue.Enqueue(getOrderNumber); // Enqueues the number
                 Console.WriteLine("Order delayed...");
             }
