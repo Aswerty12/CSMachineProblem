@@ -27,7 +27,7 @@ namespace MachineProblem
                 decimal totalPrice = 0;
                 foreach (string order in splitOrders)
                 {
-                    totalPrice += menuList[order];
+                    totalPrice += menuList[order.ToUpper()];
                 }
                 Console.WriteLine("Total Price: {0}\n", totalPrice);
 
@@ -53,7 +53,7 @@ namespace MachineProblem
                 decimal totalPrice = 0;
                 foreach (string order in splitOrders)
                 {
-                    totalPrice += menuList[order];
+                    totalPrice += menuList[order.ToUpper()];
                 }
                 Console.WriteLine("Total Price: {0}\n", totalPrice);
             }
