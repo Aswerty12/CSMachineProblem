@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\luc\\Desktop\\IT11L\\CS101\\MachineProblem\\MachineProblem\\MachineProblem.csproj": {}
+    "C:\\Users\\Josh\\source\\repos\\CSMachineProblem\\MachineProblem\\MachineProblem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\luc\\Desktop\\IT11L\\CS101\\MachineProblem\\MachineProblem\\MachineProblem.csproj": {
+    "C:\\Users\\Josh\\source\\repos\\CSMachineProblem\\MachineProblem\\MachineProblem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\luc\\Desktop\\IT11L\\CS101\\MachineProblem\\MachineProblem\\MachineProblem.csproj",
+        "projectUniqueName": "C:\\Users\\Josh\\source\\repos\\CSMachineProblem\\MachineProblem\\MachineProblem.csproj",
         "projectName": "MachineProblem",
-        "projectPath": "C:\\Users\\luc\\Desktop\\IT11L\\CS101\\MachineProblem\\MachineProblem\\MachineProblem.csproj",
-        "packagesPath": "C:\\Users\\luc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\luc\\Desktop\\IT11L\\CS101\\MachineProblem\\MachineProblem\\obj\\",
+        "projectPath": "C:\\Users\\Josh\\source\\repos\\CSMachineProblem\\MachineProblem\\MachineProblem.csproj",
+        "packagesPath": "C:\\Users\\Josh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Josh\\source\\repos\\CSMachineProblem\\MachineProblem\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\luc\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Josh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
