@@ -9,14 +9,14 @@ namespace MachineProblem
 {
     class Deliver
     {
-        public void deliverCurrentOrder(BinarySearchTree<int, string> tree, Queue<int> orderQueue, Dictionary<string, decimal> menuList)
+        public int deliverCurrentOrder(BinarySearchTree<int, string> tree, Queue<int> orderQueue, Dictionary<string, decimal> menuList)
         {
             //Option that DELIVERS, thus deleting whatever was next in queue and the associated BST entry
             Console.WriteLine("\nCurrent order:");
+            int getOrderNumber = 0;  //Get first order number in queue
             try
             {
-                int getOrderNumber = orderQueue.Dequeue(); //Get first order number in queue
-
+                getOrderNumber = orderQueue.Dequeue();
                 //Delete order in text file once the deliver is done
                 TextFileIO textFile = new TextFileIO();
                 textFile.DeleteOrder(getOrderNumber);
@@ -31,12 +31,15 @@ namespace MachineProblem
                 }
                 Console.WriteLine("Total Price: {0}\n", totalPrice);
 
-                tree.Delete(getOrderNumber); //delete in bst
+                tree.Delete(tree.Search(getOrderNumber)); //delete in bst
+
             }
             catch (InvalidOperationException) //if the queue is empty
             {
                 Console.WriteLine("No orders placed yet.");
             }
+            return getOrderNumber;
+            
         }
 
         public void displayCurrentOrder(BinarySearchTree<int, string> tree, Queue<int> orderQueue, Dictionary<string, decimal> menuList)

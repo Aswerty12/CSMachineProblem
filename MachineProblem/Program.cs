@@ -149,7 +149,7 @@ namespace MachineProblem
                 {
                     case "1":
                         //Delivers currently selected order
-                        obj.deliverCurrentOrder(tree, orderQueue, menuList);
+                        int orderNumber = obj.deliverCurrentOrder(tree, orderQueue, menuList);
                         break;
 
                     case "2":
