@@ -16,18 +16,18 @@ namespace MachineProblem
 
             try
             {
-                Console.WriteLine("Menu is available");
                 //Read all line in text file of Menu.txt
                 string[] menuLine = File.ReadAllLines("Menu.txt");
                 foreach (string item in menuLine)
                 {
                     string[] temp = item.Split(',');
-                    menu.Add(temp[0], decimal.Parse(temp[1]));
+                    menu.Add(temp[0].ToUpper(), decimal.Parse(temp[1]));
                 }
             }
             catch
             {
-                Console.WriteLine("No menu list");
+                var fs = File.Open("Menu.txt", FileMode.Append);
+                fs.Close();
             }
 
 

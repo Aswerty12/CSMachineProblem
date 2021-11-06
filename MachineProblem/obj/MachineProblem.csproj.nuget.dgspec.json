@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Josh\\Source\\Repos\\CSMachineProblem\\MachineProblem\\MachineProblem.csproj": {}
+    "C:\\Users\\Josh\\source\\repos\\CSMachineProblem\\MachineProblem\\MachineProblem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Josh\\Source\\Repos\\CSMachineProblem\\MachineProblem\\MachineProblem.csproj": {
+    "C:\\Users\\Josh\\source\\repos\\CSMachineProblem\\MachineProblem\\MachineProblem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Josh\\Source\\Repos\\CSMachineProblem\\MachineProblem\\MachineProblem.csproj",
+        "projectUniqueName": "C:\\Users\\Josh\\source\\repos\\CSMachineProblem\\MachineProblem\\MachineProblem.csproj",
         "projectName": "MachineProblem",
-        "projectPath": "C:\\Users\\Josh\\Source\\Repos\\CSMachineProblem\\MachineProblem\\MachineProblem.csproj",
+        "projectPath": "C:\\Users\\Josh\\source\\repos\\CSMachineProblem\\MachineProblem\\MachineProblem.csproj",
         "packagesPath": "C:\\Users\\Josh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Josh\\Source\\Repos\\CSMachineProblem\\MachineProblem\\obj\\",
+        "outputPath": "C:\\Users\\Josh\\source\\repos\\CSMachineProblem\\MachineProblem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Josh\\AppData\\Roaming\\NuGet\\NuGet.Config",
