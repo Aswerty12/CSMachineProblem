@@ -36,12 +36,10 @@ namespace MachineProblem
                 {
                     case "1":
                         Console.WriteLine("You chose to order!\n");
-                        Thread.Sleep(500);
                         Order(tree, orderQueue, menuList);
                         continue;
                     case "2":
                         Console.WriteLine("You chose to deliver!\n");
-                        Thread.Sleep(500);
                         Deliver(tree, orderQueue, menuList);
                         continue;
                     case "X":
@@ -87,6 +85,16 @@ namespace MachineProblem
                 switch (choice)
                 {
                     case "1":
+                        //Show menu list
+                        TextFileIO menuIO = new TextFileIO();
+                        Console.WriteLine("AVAILABLE MENU\n");
+                        foreach (var item in menuIO.LoadMenu())
+                        {
+                            Console.WriteLine("{0} - P{1}", item.Key, item.Value);
+                        }
+
+
+
                         //addContent method from Order class
                         currentOrder = new_order.addContent(currentOrder, menuList);
                         while_bool = true;
